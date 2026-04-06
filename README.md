@@ -12,7 +12,7 @@ podman run -it -p 9057:9057 flowagi/nyno
 ## 🟢 Human Editable Workflow Files (YAML + GUI).
 ## 🟢 Commercial Friendly License (Apache 2).
 
-## 🟢 Multi-Language: Build on top of  the best ecosystems (Python, Ruby, PHP & JavaScript)
+## 🟢 Multi-Language: Build on top of the best ecosystems (Python and JavaScript)
 
 
 
@@ -24,7 +24,7 @@ podman run -it -p 9057:9057 flowagi/nyno
 
 > "So, it goes as: 1. I import a language function. 2. Now I have a new component in my workflow. 3. Enjoy?"
 
-- A: Yes, exactly. From all the best ecosystems (py,js,php,ruby). And better yet, it's yours. You own it. You can license/sell it however you want, since the core is permissive Apache2 licensed.
+- A: Yes, exactly. From the ecosystems Nyno supports today (py,js). And better yet, it's yours. You own it. You can license/sell it however you want, since the core is permissive Apache2 licensed.
 
 
 Quick comparison with n8n (currently most popular AI Workflow GUI builder):
@@ -33,7 +33,7 @@ Quick comparison with n8n (currently most popular AI Workflow GUI builder):
 | ------------------ | --------------------------- | ------------------------------------------------------------------------ |
 | AI Features | ✅ Agents & API Integrations | ✅ AI, Precision & Data Sovereignty |  
 | Financial Freedom    | ❌ No. Not OSI open-source. Embedded licenses (potentially costing $25.000+) required for commercial use. | ✅ Yes. Build and possibly fully own and sell your own automation systems, extensions and commercial services. | 
-| No Technical Vendor Lock-in | ❌ Complicated specific SDK for extensions.               | ✅ Custom nodes simply use an exportable (py,rb,php,js) function. |
+| No Technical Vendor Lock-in | ❌ Complicated specific SDK for extensions.               | ✅ Custom nodes simply use an exportable Python or JavaScript function. |
 | Scalability & Execution Speed for Custom Code   | 🐌 Slow (≈0.15s per node). Custom Python/NodeJS code nodes use a new process. | ⚡ Fast (≈0.002s per node). Custom code require custom nodes which are loaded when Nyno boots. |
 | Developer Experience | 🤯 Workflows are big messy JSON files.               | 😌 Workflows are clean human editable YAML scripts, like code.    
 | Privacy & GDPR | 🇺🇸 n8n workflows often rely on US-based AI & APIs. Each workflow may introduce additional GDPR compliance risks. | 🇪🇺 Nyno uses European Mistral AI by default and includes  built-in local Postgres database nodes to encourage sovereign data storage.     
@@ -53,7 +53,7 @@ Quick comparison with n8n (currently most popular AI Workflow GUI builder):
 ---
 
 
-## Nyno 6.1: Open-Source Workflow Engines for AI, Advanced Intelligence & Beyond. Extend with Python, PHP, JS and Ruby.  Runs in the Browser.
+## Nyno 6.1: Open-Source Workflow Engines for AI, Advanced Intelligence & Beyond. Extend with Python and JavaScript. Runs in the Browser.
 - Try the Online Playground: [https://nyno.dev/online-playground](https://nyno.dev/online-playground)
 - Stay Up-to-Date: Join our Reddit community at [/r/Nyno](https://www.reddit.com/r/Nyno)
 
@@ -65,7 +65,7 @@ Quick comparison with n8n (currently most popular AI Workflow GUI builder):
 ### 🧠 Create New Workflow Steps in  languages you love.
 ### 🔗 Connect everything with plain YAML text (.nyno).
 
-Nyno is an **open-source multi-language workflow engine** and [language](https://github.com/empowerd-cms/nyno-lang) that lets you build, extend, and connect automation in the languages you already know — **Python, PHP, JavaScript, and Ruby**.
+Nyno is an **open-source multi-language workflow engine** and [language](https://github.com/empowerd-cms/nyno-lang) that lets you build, extend, and connect automation in the languages you already know — **Python and JavaScript**.
 
 
 Each programming language runs in its own **high-performance worker engine**. Command-steps can be called in short human-readable **YAML Workflows** (.nyno files).
@@ -83,19 +83,19 @@ workflow:
 
 
 ### Introducing "The Engine" that powers Nyno
-To achieve most requests/per second we're using multi-process worker engines where feasible. Nyno will spawns 2 light-weight workers for each language in `dev` mode or 3 workers for every language and CPU core in `prod` mode. This means that if you have 4 CPU cores, it will spawn 12 ready-to-run workers to run workflow steps.
+To achieve most requests/per second we're using multi-process worker engines where feasible. Nyno spawns 2 light-weight workers for each supported language in `dev` mode or 3 workers for every supported language and CPU core in `prod` mode. This means that if you have 4 CPU cores, it will spawn 24 ready-to-run workers to run workflow steps.
 
 
-| Python3 (multi-process workers engine) | PHP8 + Swoole (multi-process workers engine) | JavaScript + NodeJS (multi-process workers engine) |  Ruby (multi-process workers engine) |   
-|----------|----------|----------|----------|
-| ![Python3](/h/897a882a192b22b587a9d2373171205d8013e7a959134c2131dbd8e7f588e694/python-neon-nyno-2.webp) | ![PHP8 + Swoole](/h/591111cbf8d92909f37ef0b6587bfe9b9c1da12ae5c8c73719e21b27280be18d/php-neon-nyno-3.webp)  | ![JavaScript + NodeJS ](/h/a87196be5391957f9221e082189852d9bd909b6dfd9a1c8e78c5dc40db1018d8/js-neon-nyno-3.webp) | ![Ruby Lang](/h/5c4085f2135ff5ff1e1cb3b5042bcac1d2e0673009d4cdd0e602d8c1b004506a/ruby-lang-and-nyny.webp) | 
+| Python3 (multi-process workers engine) | JavaScript + NodeJS (multi-process workers engine) |
+|----------|----------|
+| ![Python3](/h/897a882a192b22b587a9d2373171205d8013e7a959134c2131dbd8e7f588e694/python-neon-nyno-2.webp) | ![JavaScript + NodeJS ](/h/a87196be5391957f9221e082189852d9bd909b6dfd9a1c8e78c5dc40db1018d8/js-neon-nyno-3.webp) |
 
 
 ---
 
 ## Create New Steps or Use Extensions: Turn Scripts into High-Performing Text Commands
 
-In Nyno, every **Python, JavaScript, PHP and Ruby** script becomes a reusable command that runs in its own high-performing worker engine.
+In Nyno, every **Python and JavaScript** script becomes a reusable command that runs in its own high-performing worker engine.
 Just export a function (with args and context) and call it in any workflow using plain YAML text.
 
 Example (JavaScript)
@@ -149,7 +149,7 @@ Make sure you to build the container first.
 
 ### Install Nyno on Linux Host
 
-Note: Nyno is dependent on Best.js which needs to be installed to run Nyno. **You will need to install quite a lot of  dependencies. Docker/Podman install is  recommended.** However, for the experts, a `bash scripts/check_host.sh` script is included to check dependencies quickly.
+Note: Nyno is dependent on Best.js which needs to be installed to run Nyno. **You will need to install quite a lot of dependencies. Docker/Podman install is recommended.** However, for experts, a `bash scripts/check_host.sh` script is included to check dependencies quickly.
 
 ```bash
 # install Best.js
@@ -164,7 +164,7 @@ git clone https://github.com/empowerd-cms/nyno
 cd nyno
 npm install # or # bun install
 
-# Optionally check system status/dependencies (Python, PHP Swoole, Ruby, Node,Postgres) 
+# Optionally check system status/dependencies (Python, Node, uv, Postgres)
 bash scripts/check_host.sh
 
 # Execute Nyno
@@ -187,22 +187,6 @@ def hello_py(args, context):
     return 0
 
 ```
-
-Example PHP extension:
-
-```php
-<?php
-// extensions/hello-php/command.php
-function hello_php($args, &$context) { // & required to modify context
-    $name = $args[0] ?? "World";
-    $context["hello-php"] = "Hello, $name from PHP!";
-    return 0;
-}
-
-```
-
-
----
 
 Example using `context` to Pass Data Between Steps
 
