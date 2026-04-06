@@ -7,7 +7,16 @@ if [ -f envs/ports.local.env ]; then
   source envs/ports.local.env
 fi
 
-source .venv/bin/activate
+if [ -f .venv/bin/activate ]; then
+  VENV_ACTIVATE=".venv/bin/activate"
+elif [ -f .venv/Scripts/activate ]; then
+  VENV_ACTIVATE=".venv/Scripts/activate"
+else
+  echo "Missing Python virtual environment activation script. Run 'uv sync' first."
+  exit 1
+fi
+
+source "$VENV_ACTIVATE"
 
 bash scripts/check_host.sh
 if [ $? -eq 1 ]; then

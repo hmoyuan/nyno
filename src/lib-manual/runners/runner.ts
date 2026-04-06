@@ -3,7 +3,7 @@ import os from "os";
 import net from "net";
 import fs from "fs";
 import path from "path";
-import { fileURLToPath } from "url";
+import { fileURLToPath, pathToFileURL } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -95,7 +95,7 @@ async function loadExtensions() {
 	    }
 
 	    try {
-	      const module = await import(cmdFile);
+	      const module = await import(pathToFileURL(cmdFile).href);
 
 
 	      if (module[funcName]) {
