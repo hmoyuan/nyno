@@ -29,8 +29,6 @@ check_port() {
 # --- Check all required ports ---
 check_port "$PY"
 check_port "$JS"
-check_port "$PE"
-check_port "$RB"
 
 # Typescript support
 npm run build:node
