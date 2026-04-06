@@ -34,3 +34,4 @@ pgdata
 
 
 package-lock.json
+.worktrees/
