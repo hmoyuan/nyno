@@ -6,7 +6,6 @@ WORKDIR /nyno
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
         ca-certificates xz-utils curl unzip git bash lsb-release gnupg \
-        php8.4-cli php8.4-dev php8.4-common php8.4-xml php8.4-mbstring php8.4-curl php8.4-zip \
         python3 python3-pip python3-venv postgresql-common sudo \
          build-essential \
  autoconf bison \
@@ -29,24 +28,6 @@ RUN curl -fsSL https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-
 
 # --- Verify Node and npm ---
 RUN node -v && npm -v
-
-# --- Copy Swoole ---
-COPY container/bin/swoole.so /usr/lib/php/20230831/swoole.so
-
-# Enable Swoole extension in PHP
-RUN echo "extension=/usr/lib/php/20230831/swoole.so" > /etc/php/8.4/cli/conf.d/20-swoole.ini
-
-# Install Ruby via APT
-RUN apt update && apt-get install -y --no-install-recommends \
-      ruby-full \
-      build-essential \
-      git \
-      ca-certificates && \
-    gem install bundler && \
-    rm -rf /var/lib/apt/lists/*
-
-
-
 
 # --- Install Bun ---
 RUN curl -fsSL https://bun.sh/install | bash
@@ -79,7 +60,7 @@ RUN uv sync --project /nyno || echo "[WARN] uv sync may fail if requirements mis
 
 
 # --- Expose ports ---
-EXPOSE 9024 9057 9003 9006 9072
+EXPOSE 9024 9057 9006 9072
 
 # --- Entrypoint ---
 COPY container/entrypoint.sh /entrypoint.sh

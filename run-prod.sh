@@ -7,7 +7,16 @@ if [ -f envs/ports.local.env ]; then
 fi
 
 
-source .venv/bin/activate
+if [ -f .venv/bin/activate ]; then
+  VENV_ACTIVATE=".venv/bin/activate"
+elif [ -f .venv/Scripts/activate ]; then
+  VENV_ACTIVATE=".venv/Scripts/activate"
+else
+  echo "Missing Python virtual environment activation script. Run 'uv sync' first."
+  exit 1
+fi
+
+source "$VENV_ACTIVATE"
 
 export RUN_PROD=1
 
@@ -32,8 +41,6 @@ check_port() {
 # --- Check all required ports ---
 check_port "$PY"
 check_port "$JS"
-check_port "$PE"
-check_port "$RB"
 
 # Typescript support
 npm run build:node

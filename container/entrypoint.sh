@@ -13,7 +13,6 @@ fi
 
 echo "WF:$WF"
 echo "GU:$GU"
-echo "RB:$RB"
 
 ### 
 

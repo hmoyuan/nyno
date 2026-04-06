@@ -34,7 +34,7 @@ def worker(sock):
     bytes_received = 0
     start_time = time.time()
     while time.time() - start_time < DURATION:
-        q_payload = {"path": "/test_runners", "i": 2,"name":"Alice"} # 0=js, 1=php 2=py
+        q_payload = {"path": "/test_runners", "i": 1,"name":"Alice"} # 0=js, 1=py, 2=bash
         with send_lock:
             sock.sendall(f'q{json.dumps(q_payload)}\n'.encode())
             messages_sent += 1

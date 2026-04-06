@@ -90,33 +90,19 @@ const makeCheckFunction = (files) => () => {
 
 
 const RUNNERS = {
-  php: {
-    host,
-    port: ports['PE'] ?? 9003,
-    cmd: "php",
-    file: path.resolve(__dirname, "runners/runner.php"),
-    checkFunction: makeCheckFunction(['command.php'])
-  },
   js: {
     host,
     port: ports["JS"] ?? 9072,
     cmd: "node",
     file: path.resolve(__dirname, "../../dist-ts/nyno/src/lib-manual/runners/runner.js"),
-    checkFunction: makeCheckFunction(['command.js','command.ts','command.wasm'])
+    checkFunction: makeCheckFunction(["command.js", "command.ts", "command.wasm"])
   },
   py: {
     host,
-    port: ports['PY'] ?? 9006,
+    port: ports["PY"] ?? 9006,
     cmd: "uv",
     file: path.resolve(__dirname, "runners/runner.py"),
-    checkFunction: makeCheckFunction(['command.py'])
-  },
-  rb: {
-    host,
-    port: ports['RB'] ?? 9045,
-    cmd: "ruby",
-    file: path.resolve(__dirname, "runners/runner.rb"),
-    checkFunction: makeCheckFunction(['command.rb'])
+    checkFunction: makeCheckFunction(["command.py"])
   },
 };
 

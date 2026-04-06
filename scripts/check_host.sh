@@ -31,27 +31,13 @@ check_cmd() {
     fi
 }
 
-check_php_ext() {
-    local ext=$1
-
-    if php -m 2>/dev/null | grep -q "^$ext$"; then
-        echo -e "${GREEN}[OK]${RESET} PHP extension: $ext"
-    else
-        echo -e "${RED}[ERR]${RESET} Missing PHP extension: $ext"
-        echo -e "      ${YELLOW}Install via your PHP package manager${RESET}"
-        error_count=$((error_count + 1))
-    fi
-}
-
 
 ### --- RUNTIMES --- ###
 
 check_cmd node "Node.js (>= 22)" "https://nodejs.org/en/download"
 check_cmd bun "Bun" "curl -fsSL https://bun.sh/install | bash"
-check_cmd php "PHP (>= 8.4)" "Install from your distro or https://www.php.net"
 check_cmd python3 "Python 3 (>= 3.10)" "Install via distro or https://www.python.org"
 check_cmd uv "uv (Astral)" "curl -fsSL https://astral.sh/uv/install.sh | bash"
-check_cmd ruby "Ruby (>= 3.3)" "rbenv: https://github.com/rbenv/rbenv"
 check_cmd psql "PostgreSQL Client" "sudo apt install postgresql-client"
 
 
@@ -73,21 +59,6 @@ else
     echo -e "${RED}[ERR]${RESET} PostgreSQL client (psql) not found"
     echo -e "      ${YELLOW}Install: sudo apt install postgresql-client${RESET}"
     error_count=$((error_count + 1))
-fi
-
-
-### --- PHP Extensions --- ###
-echo -e "${BLUE}Checking PHP extensions...${RESET}"
-check_php_ext curl
-
-
-### --- Optional Swoole --- ###
-echo -e "${BLUE}Checking optional PHP extension: swoole...${RESET}"
-
-if php -m 2>/dev/null | grep -q "^swoole$"; then
-    echo -e "${GREEN}[OK]${RESET} Swoole enabled"
-else
-    echo -e "${YELLOW}[WARN]${RESET} Swoole not installed (optional)."
 fi
 
 
