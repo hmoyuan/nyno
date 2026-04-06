@@ -22,7 +22,7 @@ export function loadStepCommandLangs(...baseDirs) {
       const commandFile = files.find(f => f.startsWith('command.'));
       if (!commandFile) continue;
 
-      // Extract extension (js, py, php, rb…)
+      // Extract the command file extension for the discovered step
       let ext = path.extname(commandFile).replace('.', '');
 
       // Typescript support: treat TS as JS

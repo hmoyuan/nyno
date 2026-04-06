@@ -34,7 +34,7 @@ def worker(sock):
     bytes_received = 0
     start_time = time.time()
     while time.time() - start_time < DURATION:
-        q_payload = {"path": "/test_nyno", "JSON": {"line":"from /tests"}} # 0=js, 1=php 2=py
+        q_payload = {"path": "/test_nyno", "JSON": {"line":"from /tests"}} # removed PHP/Ruby runner assumptions
         with send_lock:
             sock.sendall(f'q{json.dumps(q_payload)}\n'.encode())
             messages_sent += 1

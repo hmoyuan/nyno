@@ -1,1 +1,1 @@
-sudo killall php ruby python3 node
+sudo killall python3 node
