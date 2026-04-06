@@ -27,6 +27,7 @@
 - Modify: `Dockerfile`
 - Modify: `container/entrypoint.sh`
 - Modify: `scripts/check_host.sh`
+- Delete: `container/bin/swoole.so`
 
 ### Runnable assets to remove
 
@@ -49,7 +50,7 @@
 ### Documentation and migration
 
 - Modify: `README.md`
-- Modify or replace: `REMOVE_PHP_RUBY_SUPPORT.md`
+- Modify or replace: `docs/superpowers/notes/2026-04-06-remove-php-ruby-support.md`
 
 ### Audit artifacts
 
@@ -68,8 +69,10 @@
 - Review: `run-container-dev.sh`
 - Review: `run-container-prod.sh`
 - Review: `tests/podman/run-container-dev.sh`
+- Review: `tests/podman/run-container-prod.sh`
 - Review: `Dockerfile`
 - Review: `container/entrypoint.sh`
+- Review: `container/bin/swoole.so`
 - Review: `scripts/check_host.sh`
 - Review: `workflows-enabled/test_nyno_runners.nyno`
 - Review: `tests/benchmark-tests/*`
@@ -82,7 +85,7 @@
 Run:
 
 ```bash
-rg -n "php|ruby|\\.php|\\.rb|PHP|Ruby|Swoole|PE=|RB=" README.md src envs run-*.sh tests drivers examples extensions Dockerfile container scripts workflows-enabled
+rg -n "php|ruby|\\.php|\\.rb|PHP|Ruby|Swoole|PE=|RB=" README.md src envs run-*.sh tests drivers examples extensions Dockerfile container scripts workflows-enabled tests/podman/run-container-prod.sh container/bin/swoole.so
 ```
 
 Expected:
@@ -102,10 +105,12 @@ distribution:
 - Dockerfile
 - scripts/check_host.sh
 - tests/podman/run-container-dev.sh
+- tests/podman/run-container-prod.sh
 - run-dev.sh
 - run-prod.sh
 - run-container-dev.sh
 - run-container-prod.sh
+- container/bin/swoole.so
 
 runnable_assets:
 - src/lib-manual/runners/runner.php
@@ -127,7 +132,7 @@ tests_workflows:
 
 docs_product_messaging:
 - README.md
-- REMOVE_PHP_RUBY_SUPPORT.md
+- docs/superpowers/notes/2026-04-06-remove-php-ruby-support.md
 
 incidental_references:
 - src/lib-manual/functions/loadfunctiondatanyno.js
@@ -328,7 +333,7 @@ $CONTAINER_TOOL run -it \
 Run:
 
 ```bash
-rg -n "\\$PE|\\$RB|PHP:|RB:" run-dev.sh run-prod.sh run-container-dev.sh run-container-prod.sh tests/podman/run-container-dev.sh
+rg -n "\\$PE|\\$RB|PHP:|RB:" run-dev.sh run-prod.sh run-container-dev.sh run-container-prod.sh tests/podman/run-container-dev.sh tests/podman/run-container-prod.sh
 ```
 
 Expected:
@@ -340,7 +345,7 @@ Expected:
 Run:
 
 ```bash
-git add run-dev.sh run-prod.sh run-container-dev.sh run-container-prod.sh tests/podman/run-container-dev.sh
+git add run-dev.sh run-prod.sh run-container-dev.sh run-container-prod.sh tests/podman/run-container-dev.sh tests/podman/run-container-prod.sh
 git commit -m "refactor: remove PHP and Ruby startup wiring"
 ```
 
@@ -354,6 +359,7 @@ Expected:
 - Modify: `Dockerfile`
 - Modify: `container/entrypoint.sh`
 - Modify: `scripts/check_host.sh`
+- Delete: `container/bin/swoole.so`
 
 - [ ] **Step 1: Remove PHP, Swoole, and Ruby installation from `Dockerfile`**
 
@@ -753,7 +759,7 @@ Expected:
 ## Task 9: Publish the breaking-change migration note
 
 **Files:**
-- Modify: `REMOVE_PHP_RUBY_SUPPORT.md`
+- Modify: `docs/superpowers/notes/2026-04-06-remove-php-ruby-support.md`
 
 - [ ] **Step 1: Convert the markdown draft from internal delete notes to migration-oriented documentation**
 
@@ -795,7 +801,7 @@ Required content source:
 Run:
 
 ```bash
-rg -n "JavaScript|Python|PHP|Ruby|Swoole" README.md REMOVE_PHP_RUBY_SUPPORT.md
+rg -n "JavaScript|Python|PHP|Ruby|Swoole" README.md docs/superpowers/notes/2026-04-06-remove-php-ruby-support.md
 ```
 
 Expected:
@@ -808,7 +814,7 @@ Expected:
 Run:
 
 ```bash
-git add REMOVE_PHP_RUBY_SUPPORT.md
+git add docs/superpowers/notes/2026-04-06-remove-php-ruby-support.md
 git commit -m "docs: publish PHP and Ruby removal migration note"
 ```
 
@@ -826,7 +832,7 @@ Expected:
 Run:
 
 ```bash
-rg -n "php|ruby|\\.php|\\.rb|PHP|Ruby|Swoole|PE=|RB=" README.md src envs run-*.sh tests drivers examples extensions Dockerfile container scripts workflows-enabled
+rg -n "php|ruby|\\.php|\\.rb|PHP|Ruby|Swoole|PE=|RB=" README.md src envs run-*.sh tests drivers examples extensions Dockerfile container scripts workflows-enabled tests/podman/run-container-prod.sh container/bin/swoole.so
 ```
 
 Expected:
@@ -919,5 +925,5 @@ Consistent names used throughout:
 
 - Supported runtimes: JavaScript and Python only
 - Removed runtime keys: `php`, `rb`, `PE`, `RB`
-- Migration document path: `REMOVE_PHP_RUBY_SUPPORT.md`
+- Migration document path: `docs/superpowers/notes/2026-04-06-remove-php-ruby-support.md`
 - Workflow ids retained in runner sample: `2`, `4`, `5`
